@@ -779,3 +779,64 @@ body {
         font-size: 1.5rem;
     }
 }
+
+/* Mobile navbar: show menu in two rows (two items per row) */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.35rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .navbar-logo {
+        text-align: left;
+        font-size: 1.15rem;
+        padding-left: 4px;
+    }
+
+    /* center logo on mobile */
+    .navbar-logo {
+        display: block;
+        margin: 0.25rem auto;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .navbar-menu {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px 8px;
+        width: 100%;
+        background: transparent;
+        justify-content: center;
+    }
+
+    /* three columns: three items per row on mobile */
+    .navbar-menu li {
+        flex: 0 0 calc(33.333% - 8px);
+        max-width: calc(33.333% - 8px);
+        box-sizing: border-box;
+    }
+
+    .navbar-menu a {
+        display: block;
+        width: 100%;
+        padding: 6px 4px;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+}
+
+/* Hide-on-scroll behavior for mobile: smooth transform */
+@media (max-width: 768px) {
+    .navbar {
+        transition: transform 220ms ease-in-out;
+        will-change: transform;
+    }
+
+    .navbar.navbar-hidden {
+        transform: translateY(-110%);
+    }
+}

@@ -2,8 +2,8 @@
     <head>
         <title>SaaS Database Platform</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A SaaS database platform that provides a scalable and secure solution for managing your data. Our platform offers a range of features including data storage, backup, and recovery, as well as advanced analytics and reporting tools. With our user-friendly interface and robust security measures, you can trust us to keep your data safe and accessible at all times.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="Платформа SaaS для баз данных, предоставляющая масштабируемое и безопасное решение для управления вашими данными. Наша платформа включает хранение данных, резервное копирование и восстановление, а также расширенную аналитику и инструменты отчётности. Благодаря удобному интерфейсу и надёжным мерам безопасности ваши данные будут в сохранности и доступны в любое время.">
         <link rel="stylesheet" href="style.css">
         </head>
         <body>
@@ -178,5 +178,47 @@
                     </div>
                 </div>
             </footer>
-        </body>
-</html>
+            <script>
+                (function(){
+                    var lastScroll = 0;
+                    var navbar = document.querySelector('.navbar');
+                    if(!navbar) return;
+                    var ticking = false;
+
+                    function onScroll(){
+                        if(window.innerWidth > 768){
+                            navbar.classList.remove('navbar-hidden');
+                            lastScroll = window.pageYOffset || document.documentElement.scrollTop;
+                            return;
+                        }
+
+                        var current = window.pageYOffset || document.documentElement.scrollTop;
+                        if(current <= 0){
+                            navbar.classList.remove('navbar-hidden');
+                            lastScroll = 0;
+                            return;
+                        }
+
+                        if(current > lastScroll && current > 50){
+                            navbar.classList.add('navbar-hidden');
+                        } else if(current < lastScroll){
+                            navbar.classList.remove('navbar-hidden');
+                        }
+
+                        lastScroll = current;
+                    }
+
+                    window.addEventListener('scroll', function(){
+                        if(!ticking){
+                            window.requestAnimationFrame(function(){ onScroll(); ticking = false; });
+                            ticking = true;
+                        }
+                    }, { passive: true });
+
+                    window.addEventListener('resize', function(){
+                        if(window.innerWidth > 768) navbar.classList.remove('navbar-hidden');
+                    });
+                })();
+            </script>
+            </body>
+    </html>
