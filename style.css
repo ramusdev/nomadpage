@@ -398,6 +398,7 @@ body {
 .privacy {
     background: white;
     color: #222;
+    overflow-x: hidden;
 }
 
 .privacy article {
@@ -472,6 +473,22 @@ body {
     }
     .privacy h1 {
         font-size: 1.6rem;
+    }
+    main.privacy {
+        padding: 30px 1rem !important;
+    }
+    .privacy .toc {
+        padding: 0.75rem 0.5rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .privacy .toc ul {
+        padding-left: 0;
+        margin-left: 0;
+    }
+    .privacy .toc li {
+        margin: 0.4rem 0;
+        word-break: break-word;
     }
 }
 
@@ -782,11 +799,18 @@ body {
 
 /* Mobile navbar: show menu in two rows (two items per row) */
 @media (max-width: 768px) {
+    .navbar {
+        width: 100%;
+    }
+
     .navbar-container {
         flex-direction: column;
         align-items: stretch;
         gap: 0.35rem;
         padding: 0.6rem 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        max-width: none;
     }
 
     .navbar-logo {
@@ -811,12 +835,13 @@ body {
         width: 100%;
         background: transparent;
         justify-content: center;
+        box-sizing: border-box;
     }
 
     /* three columns: three items per row on mobile */
     .navbar-menu li {
-        flex: 0 0 calc(33.333% - 8px);
-        max-width: calc(33.333% - 8px);
+        flex: 0 0 calc(33.333% - 6px);
+        max-width: calc(33.333% - 6px);
         box-sizing: border-box;
     }
 
@@ -826,6 +851,7 @@ body {
         padding: 6px 4px;
         text-align: center;
         font-size: 0.9rem;
+        box-sizing: border-box;
     }
 }
 
