@@ -76,30 +76,35 @@
                     <h2>Тарифные планы</h2>
                     <div class="pricing-grid">
                         <div class="pricing-card">
-                            <h3>Стартовый</h3>
-                            <div class="price">199 ₽<span>/ 1 месяц</span></div>
+                            <h3>Промо аналитика</h3>
+                            <div class="price">1 ₽<span>/ 1 день</span></div>
                             <ul class="features-list">
                                 <li>✓ 10 ГБ хранилища</li>
+                                <li>✓ Полная аналитика</li>
+                                <li>✓ Расширенное логирование</li>
                                 <li>✓ Приоритетная email поддержка</li>
-                                <li>✓ Базовый API доступ</li>
                             </ul>
-                            <a href="/pay?plan=starter" class="btn btn-primary">Оформить</a>
+                            <button class="btn btn-primary" onclick="pay(1)">
+                                Оформить
+                            </button>
                         </div>
                         <div class="pricing-card featured">
                             <span class="badge">Популярный</span>
-                            <h3>Базовый</h3>
-                            <div class="price">299 ₽<span>/ 1 месяц</span></div>
+                            <h3>Промо API</h3>
+                            <div class="price">1 ₽<span>/ 1 день</span></div>
                             <ul class="features-list">
-                                <li>✓ 20 ГБ хранилища</li>
-                                <li>✓ Полная аналитика</li>
-                                <li>✓ Приоритетная email поддержка</li>
+                                <li>✓ 10 ГБ хранилища</li>
                                 <li>✓ Базовый API доступ</li>
+                                <li>✓ Увеличенные лимиты API</li>
+                                <li>✓ Приоритетная email поддержка</li>
                             </ul>
-                            <a href="/pay?plan=basic" class="btn btn-primary">Оформить</a>
+                            <button class="btn btn-primary" onclick="pay(3)">
+                                Оформить
+                            </button>
                         </div>
                         <div class="pricing-card">
-                            <h3>Про</h3>
-                            <div class="price">399 ₽<span>/ 1 месяца</span></div>
+                            <h3>Базовый</h3>
+                            <div class="price">199 ₽<span>/ 1 месяца</span></div>
                             <ul class="features-list">
                                 <li>✓ 30 ГБ хранилища</li>
                                 <li>✓ Полная аналитика</li>
@@ -107,7 +112,9 @@
                                 <li>✓ Полный API доступ</li>
                                 <li>✓ Доступ к панели управления</li>
                             </ul>
-                            <a href="/pay?plan=pro" class="btn btn-primary">Оформить</a>
+                             <button class="btn btn-primary" onclick="pay(5)">
+                                Оформить
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -220,6 +227,21 @@
                         if(window.innerWidth > 768) navbar.classList.remove('navbar-hidden');
                     });
                 })();
+
+              async function pay(id) {
+                  const response = await fetch("http://127.0.0.1:8081/static/cp", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        tariffId: id
+                    })
+                });
+
+                const data = await response.json();
+                window.location.href = data.url;
+            }
             </script>
             </body>
     </html>
